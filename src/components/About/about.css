@@ -1,0 +1,97 @@
+.about {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  font-family: Roboto Slab, serif;
+}
+
+.about__wrapper {
+  width: 1440px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.about__avatar {
+  margin: 80px 56px 80px 104px;
+  width: 464px;
+  height: 464px;
+  background-image: url("../../images/Benyo.jpg");
+  background-size: contain;
+  border-radius: 100%;
+}
+
+.about__text-wrapper {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+.about__title {
+  margin: 131px 0 24px;
+  font-family: Roboto Slab, serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 46px;
+  color: #1a1b22;
+}
+
+.about__subtitle {
+  font-family: Roboto, serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #1a1b22;
+}
+
+/*tablet/laptop view*/
+@media screen and (max-width: 1439px) {
+  .about__wrapper {
+    width: 768px;
+  }
+
+  .about__avatar {
+    margin: 61px 32px 0 40px;
+    width: 232px;
+    height: 232px;
+  }
+
+  .about__text-wrapper {
+    width: 424px;
+    margin-bottom: 60px;
+  }
+
+  .about__title {
+    margin: 40px 0 10px;
+    font-size: 30px;
+    line-height: 40px;
+  }
+}
+
+/*mobile view*/
+@media screen and (max-width: 767px) {
+  .about__wrapper {
+    width: 320px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about__avatar {
+    margin: 32px 0 24px;
+    width: 272px;
+    height: 272px;
+  }
+
+  .about__text-wrapper {
+    margin-bottom: 128px;
+    width: 288px;
+  }
+
+  .about__title {
+    margin: 0 0 16px;
+  }
+}
