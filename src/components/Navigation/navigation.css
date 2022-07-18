@@ -152,6 +152,7 @@
   }
 
   .navigation__home {
+    padding: 0;
     width: 288px;
     margin: 16px 0 0;
     font-size: 18px;
@@ -161,6 +162,8 @@
   }
 
   .navigation__saved {
+    padding: 0;
+    margin: 16px 0 22px;
     width: 288px;
     font-size: 18px;
     line-height: 56px;
