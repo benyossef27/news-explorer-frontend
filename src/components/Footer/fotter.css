@@ -5,7 +5,7 @@
   background-color: white;
   justify-content: space-between;
   height: 80px;
-  font-family: "Roboto", "sans-serif", "Courier New", Courier, monospace;
+  font-family: "Roboto", "sans-serif", "Courier New";
 }
 
 .footer__copyrights {
@@ -49,6 +49,20 @@
   .footer {
     flex-direction: column-reverse;
     margin: 20px 16px;
+  }
+  .footer__copywright {
+    width: 90vw;
+    margin: 20px 0 0;
+  }
+}
+@media screen and (max-width: 370px) {
+  .footer {
+    flex-direction: column-reverse;
+  }
+
+  .footer__navbar {
+    margin: 0;
+    padding: 0;
   }
   .footer__copywright {
     width: 90vw;
