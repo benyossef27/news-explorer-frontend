@@ -37,6 +37,7 @@
   line-height: 24px;
   color: #1a1b22;
   text-decoration: none;
+  grid-area: home;
 }
 
 .footer__navbar-icon {
@@ -48,24 +49,31 @@
 @media screen and (max-width: 540px) {
   .footer {
     flex-direction: column-reverse;
-    margin: 20px 16px;
-  }
-  .footer__copywright {
-    width: 90vw;
-    margin: 20px 0 0;
-  }
-}
-@media screen and (max-width: 370px) {
-  .footer {
-    flex-direction: column-reverse;
   }
 
   .footer__navbar {
-    margin: 0;
+    display: grid;
     padding: 0;
+    grid-template-columns: 200px 0px 50px 50px;
+    grid-template-rows: auto;
+    grid-row-gap: 20px;
+    grid-template-areas:
+      "home .git linked"
+      "prac . . .";
   }
-  .footer__copywright {
+  .footer__copyrights {
     width: 90vw;
-    margin: 20px 0 0;
+    margin-top: 38px;
+  }
+
+  .footer__link_prac {
+    grid-area: prac;
+  }
+  .footer__link_linkedin {
+    grid-area: linked;
+  }
+
+  .footer__link_git {
+    grid-area: git;
   }
 }

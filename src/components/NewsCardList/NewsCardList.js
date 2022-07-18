@@ -11,7 +11,7 @@ export default function NewsCardList({ children, isSearching, isFailed }) {
           <div className="cards__wrapper">
             <ul className="cards__list">{children}</ul>
           </div>
-          <button className={`cards__more`}>Show more</button>
+          <button className="cards__more">Show more</button>
         </>
       )}
     </section>

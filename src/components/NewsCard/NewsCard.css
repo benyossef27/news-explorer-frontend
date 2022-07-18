@@ -185,6 +185,7 @@
   }
 
   .card__subtitle {
+    text-transform: uppercase;
     margin: 0 auto 16px 16px;
   }
 

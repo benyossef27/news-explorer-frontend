@@ -10,7 +10,6 @@
   display: flex;
   flex-wrap: wrap;
   column-gap: 16px;
-  justify-content: center;
   background-color: #f5f6f7;
   margin: 62px;
 }

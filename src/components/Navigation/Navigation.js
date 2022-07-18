@@ -23,7 +23,7 @@ export default function Navigation(props) {
       <Link
         to="/"
         className={`navigation__home link ${
-          isOnSavedNewsPage && "navigation__home_type_saved"
+          isOnSavedNewsPage && "navigation__home_active"
         }`}
         onClick={() => {
           setNavOpen(false);
@@ -36,7 +36,7 @@ export default function Navigation(props) {
         <Link
           to="/saved-news"
           className={`navigation__saved link ${
-            isOnSavedNewsPage && "navigation__saved_type_saved"
+            isOnSavedNewsPage && "navigation__saved_active"
           }`}
           onClick={() => {
             setNavOpen(false);
