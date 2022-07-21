@@ -1,0 +1,79 @@
+.footer {
+  width: 90%;
+  position: relative;
+  display: flex;
+  background-color: white;
+  justify-content: space-between;
+  height: 80px;
+  font-family: "Roboto", "sans-serif", "Courier New";
+}
+
+.footer__copyrights {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #b6bcbf;
+}
+
+.footer__navbar {
+  list-style: none;
+  display: flex;
+}
+
+.footer__link {
+  color: black;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.footer__home-link {
+  margin: 30px 40px 28px auto;
+  font-family: Roboto, serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #1a1b22;
+  text-decoration: none;
+  grid-area: home;
+}
+
+.footer__navbar-icon {
+  width: 20px;
+  height: 20px;
+  margin-left: 28px;
+}
+
+@media screen and (max-width: 540px) {
+  .footer {
+    flex-direction: column-reverse;
+  }
+
+  .footer__navbar {
+    display: grid;
+    padding: 0;
+    grid-template-columns: 200px 0px 50px 50px;
+    grid-template-rows: auto;
+    grid-row-gap: 20px;
+    grid-template-areas:
+      "home .git linked"
+      "prac . . .";
+  }
+  .footer__copyrights {
+    width: 90vw;
+    margin-top: 38px;
+  }
+
+  .footer__link_prac {
+    grid-area: prac;
+  }
+  .footer__link_linkedin {
+    grid-area: linked;
+  }
+
+  .footer__link_git {
+    grid-area: git;
+  }
+}
