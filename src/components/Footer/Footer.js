@@ -20,19 +20,24 @@ export default function Footer() {
             className="footer__link  hover-fade"
             href="https://practicum.com"
             target="_blank"
+            rel="noreferrer"
           >
             Practicum by Yandex
           </a>
         </li>
         <li className="footer__link footer__link_git hover-fade">
           {" "}
-          <a href="https://github.com/benyossef27" target="_blank">
+          <a
+            href="https://github.com/benyossef27"
+            target="_blank"
+            rel="noreferrer"
+          >
             <img src={github} alt="github" className="footer__navbar-icon" />
           </a>
         </li>
         <li className="footer__link footer__link_linkedin hover-fade">
           {" "}
-          <a href="https://linkedin.com" target="_blank">
+          <a href="https://linkedin.com" target="_blank" rel="noreferrer">
             <img
               src={linkedin}
               alt="linkedin"
