@@ -20,9 +20,6 @@
   position: absolute;
   top: 24px;
   right: 24px;
-}
-
-.card__buton_type_regulare {
   background-image: url("../../images/save-button.svg");
 }
 

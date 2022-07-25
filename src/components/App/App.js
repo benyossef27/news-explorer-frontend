@@ -208,6 +208,7 @@ export default function App() {
           handleLogOut={handleLogOut}
           handleLogIn={handleLogIn}
           handleSearchSubmit={handleSearchSubmit}
+          savedArticles={savedArticles}
         />
         <Routes>
           <Route

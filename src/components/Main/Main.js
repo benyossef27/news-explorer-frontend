@@ -1,5 +1,4 @@
 import About from "../About/About";
-import NewsCard from "../NewsCard/NewsCard";
 import NewsCardList from "../NewsCardList/NewsCardList";
 
 export default function Main(props) {
@@ -13,14 +12,6 @@ export default function Main(props) {
   } = props;
   return (
     <main className="main">
-      <NewsCardList
-        isLoggedIn={false}
-        location={location}
-        searchedArticles={searchedArticles}
-        handleSaveArticle={handleSaveArticle}
-        handleDeleteArticle={handleDeleteArticle}
-        savedArticles={savedArticles}
-      />
       <NewsCardList
         isLoggedIn={isLoggedIn}
         location={location}
