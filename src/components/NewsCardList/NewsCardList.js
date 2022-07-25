@@ -4,6 +4,9 @@ import NewsCard from "../NewsCard/NewsCard";
 
 export default function NewsCardList(props) {
   const {
+    searchHappened,
+    noSearchOutcome,
+    isSearching,
     isLoggedIn,
     location,
     searchedArticles,
@@ -28,7 +31,7 @@ export default function NewsCardList(props) {
     <>
       {isOnSavedNewsPage ? (
         <section
-          className={`cards ${savedArticles.length !== 0 && "cards__active"}`}
+          className={`cards ${savedArticles.length !== 0 && "cards_active"}`}
         >
           <div className="cards__wrapper">
             <ul className="cards__list">
@@ -47,12 +50,19 @@ export default function NewsCardList(props) {
             </ul>
           </div>
         </section>
+      ) : isSearching ? (
+        <section className={"cards cards_active"}>
+          <Loader noSearchOutcome={noSearchOutcome} />
+        </section>
+      ) : noSearchOutcome ? (
+        <section className={`cards ${searchHappened && "cards_active"}`}>
+          <Loader noSearchOutcome={noSearchOutcome} />
+        </section>
       ) : (
         <section
-          className={`cards ${
-            searchedArticles.length !== 0 && "cards__active"
-          }`}
+          className={`cards ${searchedArticles.length !== 0 && "cards_active"}`}
         >
+          <h2 className="cards__title">Search results</h2>
           <div className="cards__wrapper">
             <ul className="cards__list">
               {

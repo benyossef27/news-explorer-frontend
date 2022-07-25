@@ -32,6 +32,9 @@ export default function App() {
   const [isInfoOpen, setInfoOpen] = useState(false);
   const [searchedArticles, setSearchedArticles] = useState([]);
   const [savedArticles, setSavedArticles] = useState([]);
+  const [noSearchOutcome, setNoSearchOutcome] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
+  const [searchHappened, setSearchHappened] = useState(false);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -145,10 +148,11 @@ export default function App() {
   async function handleSearchSubmit(event, keyWord) {
     try {
       event.preventDefault();
-      setModalOpen(true);
-      setPreloaderOpen(true);
+      setIsSearching(true);
       let searchResult = await getArticlesFromApi(keyWord);
+
       if (searchResult) {
+        setIsSearching(false);
         localStorage.setItem(
           "lastSearch",
           JSON.stringify(searchResult.articles)
@@ -157,11 +161,10 @@ export default function App() {
         setSearchedArticles(JSON.parse(localStorage.getItem("lastSearch")));
         localStorage.setItem("counter", 3);
       }
-      setModalOpen(false);
-      setPreloaderOpen(false);
     } catch (error) {
-      closeAllPopups();
-      alert("The search failed.");
+      setNoSearchOutcome(true);
+      setSearchHappened(true);
+      setIsSearching(false);
     }
   }
 
@@ -215,6 +218,9 @@ export default function App() {
             path="/"
             element={
               <Main
+                searchHappened={searchHappened}
+                noSearchOutcome={noSearchOutcome}
+                isSearching={isSearching}
                 isLoggedIn={isLoggedIn}
                 location={location}
                 handleSaveArticle={handleSaveArticle}

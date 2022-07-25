@@ -1,7 +1,7 @@
 .cards {
   color: #1a1b22;
   font-family: "Roboto Slab", sans-serif;
-  display: flex;
+  display: none;
   flex-direction: column;
   background-color: #f5f6f7;
   position: relative;
@@ -11,11 +11,11 @@
 .cards__title {
   font-size: 40px;
   line-height: 46px;
-  margin: 0;
+  margin-top: 80px;
   font-weight: 400;
 }
 
-.cards__active {
+.cards_active {
   display: flex;
 }
 
@@ -48,7 +48,7 @@
   border: none;
   cursor: pointer;
   transition: background-color 0.3s linear;
-  margin-bottom: 80px;
+  margin: 64px auto 80px;
 }
 
 .cards__more:hover {

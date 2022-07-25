@@ -1,12 +1,10 @@
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 import Info from "../Info/Info";
-import Preloader from "../Preloader/Preloader";
 
 export default function ModalWindow(props) {
   const {
     isModalOpen,
     isLoginFormOpen,
-    isPreloaderOpen,
     isInfoOpen,
     closeAllPopups,
     redirectToLogin,
@@ -25,7 +23,6 @@ export default function ModalWindow(props) {
         handleLoginSubmit={handleLoginSubmit}
         handleSignupSubmit={handleSignupSubmit}
       />
-      <Preloader isPreloaderOpen={isPreloaderOpen} />
       <Info
         isInfoOpen={isInfoOpen}
         redirectToLogin={redirectToLogin}
