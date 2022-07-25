@@ -14,6 +14,14 @@ import ModalWindow from "../ModalWindow/ModalWindow";
 import SavedNews from "../SavedNews/SavedNews";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { getArticlesFromApi } from "../../utils/NewsApi";
+import {
+  register,
+  login,
+  getUserData,
+  saveArticle,
+  deleteArticle,
+  getArticlesFromDb,
+} from "../../utils/MainApi";
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState({});
@@ -37,6 +45,25 @@ export default function App() {
     document.addEventListener("keydown", closeByEscape);
     return () => document.removeEventListener("keydown", closeByEscape);
   }, []);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const user = await getUserData(localStorage.getItem("jwt").jwt);
+        if (user) {
+          setCurrentUser(user);
+          setLoggedIn(true);
+        }
+        const articlesFromDb = await getArticlesFromDb();
+        if (articlesFromDb) {
+          setSavedArticles(articlesFromDb);
+        }
+      } catch {
+        return;
+      }
+    })();
+    setSearchedArticles(JSON.parse(localStorage.getItem("lastSearch")) || []);
+  }, [isLoggedIn]);
 
   function closeAllPopups() {
     setInfoOpen(false);
@@ -98,6 +125,30 @@ export default function App() {
     }
   }
 
+  async function handleDeleteArticle(article) {
+    try {
+      await deleteArticle(article);
+      const articlesFromDb = await getArticlesFromDb();
+      if (articlesFromDb) {
+        setSavedArticles(articlesFromDb);
+      }
+    } catch (error) {
+      setSavedArticles([]);
+    }
+  }
+
+  async function handleSaveArticle(article) {
+    try {
+      await saveArticle(article);
+      const articlesFromDb = await getArticlesFromDb();
+      if (articlesFromDb) {
+        setSavedArticles(articlesFromDb);
+      }
+    } catch (error) {
+      if (isLoggedIn) alert("Failed to save article.");
+    }
+  }
+
   return (
     <div className="App">
       <CurrentUserContext.Provider value={currentUser}>
@@ -122,14 +173,26 @@ export default function App() {
           <Route
             path="/"
             element={
-              <Main isLoggedIn={isLoggedIn} location={location} isFailed />
+              <Main
+                isLoggedIn={isLoggedIn}
+                location={location}
+                handleSaveArticle={handleSaveArticle}
+                handleDeleteArticle={handleDeleteArticle}
+                searchedArticles={searchedArticles}
+                savedArticles={savedArticles}
+              />
             }
           />
           <Route
             path="/saved-news"
             element={
               isLoggedIn ? (
-                <SavedNews isLoggedIn={isLoggedIn} location={location} />
+                <SavedNews
+                  isLoggedIn={isLoggedIn}
+                  location={location}
+                  handleDeleteArticle={handleDeleteArticle}
+                  savedArticles={savedArticles}
+                />
               ) : (
                 <Navigate to="/" />
               )
