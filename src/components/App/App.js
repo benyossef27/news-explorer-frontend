@@ -148,10 +148,15 @@ export default function App() {
   async function handleSearchSubmit(event, keyWord) {
     try {
       event.preventDefault();
+      setNoSearchOutcome(false);
+      setSearchHappened(false);
       setIsSearching(true);
       let searchResult = await getArticlesFromApi(keyWord);
-
-      if (searchResult) {
+      if (searchResult.articles.length === 0) {
+        setNoSearchOutcome(true);
+        setSearchHappened(true);
+      } else if (searchResult.articles.length !== 0) {
+        console.log(searchResult);
         setIsSearching(false);
         localStorage.setItem(
           "lastSearch",
@@ -161,11 +166,7 @@ export default function App() {
         setSearchedArticles(JSON.parse(localStorage.getItem("lastSearch")));
         localStorage.setItem("counter", 3);
       }
-    } catch (error) {
-      setNoSearchOutcome(true);
-      setSearchHappened(true);
-      setIsSearching(false);
-    }
+    } catch (error) {}
   }
 
   async function handleDeleteArticle(article) {
