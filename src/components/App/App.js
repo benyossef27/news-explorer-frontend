@@ -13,6 +13,7 @@ import Footer from "../Footer/Footer";
 import ModalWindow from "../ModalWindow/ModalWindow";
 import SavedNews from "../SavedNews/SavedNews";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { getArticlesFromApi } from "../../utils/NewsApi";
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState({});
@@ -21,6 +22,8 @@ export default function App() {
   const [isLoginFormOpen, setLoginFormOpen] = useState(false);
   const [isPreloaderOpen, setPreloaderOpen] = useState(false);
   const [isInfoOpen, setInfoOpen] = useState(false);
+  const [searchedArticles, setSearchedArticles] = useState([]);
+  const [savedArticles, setSavedArticles] = useState([]);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -72,8 +75,27 @@ export default function App() {
     setInfoOpen(true);
   }
 
-  function handleSearchSubmit(event) {
-    event.preventDefault();
+  async function handleSearchSubmit(event, keyWord) {
+    try {
+      event.preventDefault();
+      setModalOpen(true);
+      setPreloaderOpen(true);
+      let searchResult = await getArticlesFromApi(keyWord);
+      if (searchResult) {
+        localStorage.setItem(
+          "lastSearch",
+          JSON.stringify(searchResult.articles)
+        );
+        localStorage.setItem("keyWord", keyWord);
+        setSearchedArticles(JSON.parse(localStorage.getItem("lastSearch")));
+        localStorage.setItem("counter", 3);
+      }
+      setModalOpen(false);
+      setPreloaderOpen(false);
+    } catch (error) {
+      closeAllPopups();
+      alert("The search failed.");
+    }
   }
 
   return (
