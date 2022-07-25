@@ -79,6 +79,8 @@ export default function App() {
 
   function handleLogOut() {
     navigate("/");
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("lastSearch");
     setLoggedIn(false);
   }
 
@@ -87,21 +89,59 @@ export default function App() {
     setLoginFormOpen(true);
   }
 
-  async function handleLoginSubmit(event) {
-    event.preventDefault();
-    setCurrentUser({});
-    setLoggedIn(true);
+  async function handleLoginSubmit(event, email, password) {
+    try {
+      event.preventDefault();
+      setModalOpen(true);
+      setPreloaderOpen(true);
+      const data = await login(email, password);
+      if (data) {
+        localStorage.setItem("jwt", data.token);
+      }
+    } catch (res) {
+      closeAllPopups();
+      alert("Failed to log in. Wrong email or password");
+      return;
+    }
+
+    try {
+      const user = await getUserData(localStorage.getItem("jwt").jwt);
+      if (user) {
+        setCurrentUser(user || {});
+        setLoggedIn(true);
+      }
+    } catch (res) {
+      closeAllPopups();
+      alert("Failed to log in. User not found.");
+      return;
+    }
+
+    try {
+      const articlesFromDb = await getArticlesFromDb();
+      if (articlesFromDb) {
+        setSavedArticles(articlesFromDb || []);
+      }
+    } catch {
+      closeAllPopups();
+    }
     setModalOpen(false);
+    setPreloaderOpen(false);
     setLoginFormOpen(false);
   }
 
-  async function handleSignupSubmit(event) {
-    event.preventDefault();
-    closeAllPopups();
-    setModalOpen(true);
-    setInfoOpen(true);
+  async function handleSignupSubmit(event, email, password, username) {
+    try {
+      event.preventDefault();
+      setLoginFormOpen(false);
+      const data = await register(email, password, username);
+      if (data.email === email) {
+        setInfoOpen(true);
+      }
+    } catch (error) {
+      closeAllPopups();
+      alert("Failed to sign up. This email might be taken.");
+    }
   }
-
   async function handleSearchSubmit(event, keyWord) {
     try {
       event.preventDefault();

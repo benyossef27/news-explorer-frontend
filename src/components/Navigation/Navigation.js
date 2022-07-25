@@ -59,7 +59,7 @@ export default function Navigation(props) {
                 isOnSavedNewsPage && "navigation__log-title_type_saved"
               }`}
             >
-              {"Benyo"}
+              {currentUser.name}
             </p>
             <div
               className={`navigation__log-image ${
