@@ -177,7 +177,7 @@ export default function App() {
         setSavedArticles(articlesFromDb);
       }
     } catch (error) {
-      setSavedArticles([]);
+      console.log(error);
     }
   }
 

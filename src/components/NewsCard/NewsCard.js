@@ -95,7 +95,6 @@ export default function NewsCard(props) {
           <p
             className={`card__message ${!isLoggedIn && "card__message_active"}`}
           >
-            {" "}
             Sign in to save articles
           </p>
         </>

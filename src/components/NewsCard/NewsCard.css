@@ -54,13 +54,13 @@
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
-  line-height: 36px;
+  line-height: 40px;
   color: #000000;
   text-align: center;
   visibility: hidden;
 }
 
-.card__button:hover ~ .card__message {
+.card__button:hover ~ .card__message_active {
   visibility: visible;
   transition: opacity 0.7s linear, visibility 0s linear 0.2s;
 }
