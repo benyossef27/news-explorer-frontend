@@ -80,9 +80,9 @@ export default function App() {
     setInfoOpen(false);
   }
 
-  function handleLogOut() {
+  function handleLogOut(token) {
     navigate("/");
-    localStorage.removeItem("jwt");
+    localStorage.removeItem("jwt", token);
     localStorage.removeItem("lastSearch");
     setLoggedIn(false);
   }
@@ -171,7 +171,7 @@ export default function App() {
 
   async function handleDeleteArticle(article) {
     try {
-      await deleteArticle(article);
+      await deleteArticle(article._id);
       const articlesFromDb = await getArticlesFromDb();
       if (articlesFromDb) {
         setSavedArticles(articlesFromDb);

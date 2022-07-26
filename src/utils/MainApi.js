@@ -69,8 +69,9 @@ const saveArticle = async (article) => {
   return checkResponse(res);
 };
 
-const deleteArticle = async (article) => {
-  const res = await fetch(`${baseUrl}/articles/${article._id}`, {
+const deleteArticle = async (id) => {
+  console.log(id);
+  const res = await fetch(`${baseUrl}/articles/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
