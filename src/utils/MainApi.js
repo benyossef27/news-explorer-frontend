@@ -70,7 +70,6 @@ const saveArticle = async (article) => {
 };
 
 const deleteArticle = async (id) => {
-  console.log(id);
   const res = await fetch(`${baseUrl}/articles/${id}`, {
     method: "DELETE",
     headers: {

@@ -156,7 +156,6 @@ export default function App() {
         setNoSearchOutcome(true);
         setSearchHappened(true);
       } else if (searchResult.articles.length !== 0) {
-        console.log(searchResult);
         setIsSearching(false);
         localStorage.setItem(
           "lastSearch",
