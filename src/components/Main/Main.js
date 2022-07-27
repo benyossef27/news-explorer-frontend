@@ -13,6 +13,7 @@ export default function Main(props) {
     searchedArticles,
     savedArticles,
     searchOutcome,
+    openForm,
   } = props;
   return (
     <main className="main">
@@ -27,6 +28,7 @@ export default function Main(props) {
         handleDeleteArticle={handleDeleteArticle}
         savedArticles={savedArticles}
         searchOutcome={searchOutcome}
+        openForm={openForm}
       />
       <About />
     </main>

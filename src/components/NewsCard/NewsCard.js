@@ -8,6 +8,7 @@ export default function NewsCard(props) {
     handleDeleteArticle,
     handleSaveArticle,
     savedArticles,
+    openForm,
   } = props;
 
   const isOnSavedNewsPage = location.pathname === "/saved-news";
@@ -57,6 +58,8 @@ export default function NewsCard(props) {
         handleSaveArticle(article);
         setCardSelected(true);
       }
+    } else {
+      openForm();
     }
   }
 

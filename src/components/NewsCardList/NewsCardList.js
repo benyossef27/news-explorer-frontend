@@ -13,6 +13,7 @@ export default function NewsCardList(props) {
     savedArticles,
     handleSaveArticle,
     handleDeleteArticle,
+    openForm,
   } = props;
   const isOnSavedNewsPage = location.pathname === "/saved-news";
   const [sliceOfArticles, setSliceOfArticles] = useState(3);
@@ -85,6 +86,7 @@ export default function NewsCardList(props) {
                       handleSaveArticle={handleSaveArticle}
                       handleDeleteArticle={handleDeleteArticle}
                       savedArticles={savedArticles}
+                      openForm={openForm}
                     />
                   ))
               }

@@ -1,10 +1,4 @@
-import {
-  Routes,
-  Route,
-  useLocation,
-  useNavigate,
-  Navigate,
-} from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import Header from "../Header/Header";
@@ -22,6 +16,7 @@ import {
   deleteArticle,
   getArticlesFromDb,
 } from "../../utils/MainApi";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState({});
@@ -183,6 +178,7 @@ export default function App() {
   async function handleSaveArticle(article) {
     try {
       await saveArticle(article);
+
       const articlesFromDb = await getArticlesFromDb();
       if (articlesFromDb) {
         setSavedArticles(articlesFromDb);
@@ -227,22 +223,21 @@ export default function App() {
                 handleDeleteArticle={handleDeleteArticle}
                 searchedArticles={searchedArticles}
                 savedArticles={savedArticles}
+                openForm={handleLogIn}
               />
             }
           />
           <Route
             path="/saved-news"
             element={
-              isLoggedIn ? (
+              <ProtectedRoute isLoggedIn={isLoggedIn} openForm={handleLogIn}>
                 <SavedNews
                   isLoggedIn={isLoggedIn}
                   location={location}
                   handleDeleteArticle={handleDeleteArticle}
                   savedArticles={savedArticles}
                 />
-              ) : (
-                <Navigate to="/" />
-              )
+              </ProtectedRoute>
             }
           />
         </Routes>
