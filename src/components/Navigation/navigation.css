@@ -74,6 +74,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-transform: capitalize;
 }
 
 .navigation__log-title_type_saved {
