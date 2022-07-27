@@ -41,8 +41,6 @@ Start the server
 
 ## Deploy the frontend
 
-After making desired changes:
-
 ```bash
   npm run deploy
 ```
