@@ -122,6 +122,7 @@ export default function App() {
         setSavedArticles(articlesFromDb || []);
       }
     } catch {
+      setPreloaderOpen(false);
       closeAllPopups();
       alert("Failed to load saved articales");
     }
@@ -156,6 +157,7 @@ export default function App() {
         setSearchHappened(true);
       } else if (searchResult.articles.length !== 0) {
         setIsSearching(false);
+        setPreloaderOpen(false);
         localStorage.setItem(
           "lastSearch",
           JSON.stringify(searchResult.articles)
