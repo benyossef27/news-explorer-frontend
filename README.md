@@ -1,5 +1,52 @@
-Application allow you to search latest news articles by any topics you want. Registered users can save any articles, they interested in.
+# News Explorer
 
-HTML5, CSS, ReactJS are used in development of this app.
+Search, browse and bookmark your favorite news articles for later reading.
 
-[Links to repositories:](https://github.com/benyossef27/news-explorer-frontend)
+- [Live deployment](https://benyo-news.students.nomoredomainssbs.ru)
+
+- [Backend repository](https://github.com/benyossef27/news-explorer-api)
+
+## Features
+
+- Search news articles
+- Bookmark
+- Signup / Session persistence
+- Mobile / Tablet / Desktop compatiblity
+
+## Tech Stack
+
+**Client:** React
+
+**Server:** Node, Express, MongoDB
+
+## Run Locally
+
+Go to the project directory
+
+```bash
+  cd news-explorer-frontend
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run start
+```
+
+## Deploy the frontend
+
+After making desired changes:
+
+```bash
+  npm run deploy
+```
+
+## Acknowledgements
+
+- News API - powered by [News API](https://newsapi.org/)

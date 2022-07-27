@@ -1,4 +1,4 @@
-import { apiKey, apiUrlTweaked } from "./consts";
+import { APIKEY, APIURLTWEAKED } from "./consts";
 
 const getArticlesFromApi = async (q) => {
   let date = new Date();
@@ -8,11 +8,11 @@ const getArticlesFromApi = async (q) => {
     date.getDate(),
   ];
   const response = await fetch(
-    `${apiUrlTweaked}/v2/everything?q=${q}&from=${year}-${
+    `${APIURLTWEAKED}/v2/everything?q=${q}&from=${year}-${
       month + 1
     }-${day}&to=${year}-${month + 1}-${
       day - 7
-    }&pageSize=100&language=en&apiKey=${apiKey}`,
+    }&pageSize=100&language=en&APIKEY=${APIKEY}`,
     {
       method: "GET",
     }

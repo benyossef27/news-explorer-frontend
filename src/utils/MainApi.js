@@ -1,4 +1,4 @@
-import { baseUrl } from "./consts";
+import { BASEURL } from "./consts";
 
 function checkResponse(res) {
   if (res.ok) {
@@ -10,7 +10,7 @@ function checkResponse(res) {
 }
 
 const register = async (email, password, username) => {
-  const res = await fetch(`${baseUrl}/signup`, {
+  const res = await fetch(`${BASEURL}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -25,7 +25,7 @@ const register = async (email, password, username) => {
 };
 
 const login = async (email, password) => {
-  const res = await fetch(`${baseUrl}/signin`, {
+  const res = await fetch(`${BASEURL}/signin`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -39,7 +39,7 @@ const login = async (email, password) => {
 };
 
 const getUserData = async () => {
-  const res = await fetch(`${baseUrl}/users/me`, {
+  const res = await fetch(`${BASEURL}/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -50,7 +50,7 @@ const getUserData = async () => {
 };
 
 const saveArticle = async (article) => {
-  const res = await fetch(`${baseUrl}/articles`, {
+  const res = await fetch(`${BASEURL}/articles`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -70,7 +70,7 @@ const saveArticle = async (article) => {
 };
 
 const deleteArticle = async (id) => {
-  const res = await fetch(`${baseUrl}/articles/${id}`, {
+  const res = await fetch(`${BASEURL}/articles/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -81,7 +81,7 @@ const deleteArticle = async (id) => {
 };
 
 const getArticlesFromDb = async () => {
-  const res = await fetch(`${baseUrl}/articles`, {
+  const res = await fetch(`${BASEURL}/articles`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
