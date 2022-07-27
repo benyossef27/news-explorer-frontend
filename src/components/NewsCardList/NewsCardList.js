@@ -13,6 +13,7 @@ export default function NewsCardList(props) {
     savedArticles,
     handleSaveArticle,
     handleDeleteArticle,
+    isPreloaderOpen,
     openForm,
   } = props;
   const isOnSavedNewsPage = location.pathname === "/saved-news";
@@ -53,7 +54,10 @@ export default function NewsCardList(props) {
         </section>
       ) : isSearching ? (
         <section className={"cards cards_active"}>
-          <Loader noSearchOutcome={noSearchOutcome} />
+          <Loader
+            noSearchOutcome={noSearchOutcome}
+            isPreloaderOpen={isPreloaderOpen}
+          />
         </section>
       ) : noSearchOutcome ? (
         <section className={`cards ${searchHappened && "cards_active"}`}>

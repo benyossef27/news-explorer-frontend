@@ -3,6 +3,7 @@ import NewsCardList from "../NewsCardList/NewsCardList";
 
 export default function Main(props) {
   const {
+    isPreloaderOpen,
     searchHappened,
     noSearchOutcome,
     isSearching,
@@ -18,6 +19,7 @@ export default function Main(props) {
   return (
     <main className="main">
       <NewsCardList
+        isPreloaderOpen={isPreloaderOpen}
         searchHappened={searchHappened}
         noSearchOutcome={noSearchOutcome}
         isSearching={isSearching}

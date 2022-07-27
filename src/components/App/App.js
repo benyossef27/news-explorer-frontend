@@ -92,11 +92,13 @@ export default function App() {
       event.preventDefault();
       setModalOpen(true);
       setPreloaderOpen(true);
+      setLoginFormOpen(false);
       const data = await login(email, password);
       if (data) {
         localStorage.setItem("jwt", data.token);
       }
     } catch (res) {
+      setPreloaderOpen(false);
       closeAllPopups();
       alert("Failed to log in. Wrong email or password");
       return;
@@ -121,6 +123,7 @@ export default function App() {
       }
     } catch {
       closeAllPopups();
+      alert("Failed to load saved articales");
     }
     setModalOpen(false);
     setPreloaderOpen(false);
@@ -146,6 +149,7 @@ export default function App() {
       setNoSearchOutcome(false);
       setSearchHappened(false);
       setIsSearching(true);
+      setPreloaderOpen(true);
       let searchResult = await getArticlesFromApi(keyWord);
       if (searchResult.articles.length === 0) {
         setNoSearchOutcome(true);
@@ -160,7 +164,9 @@ export default function App() {
         setSearchedArticles(JSON.parse(localStorage.getItem("lastSearch")));
         localStorage.setItem("counter", 3);
       }
-    } catch (error) {}
+    } catch (error) {
+      alert("Failed to search articles");
+    }
   }
 
   async function handleDeleteArticle(article) {
@@ -171,7 +177,7 @@ export default function App() {
         setSavedArticles(articlesFromDb);
       }
     } catch (error) {
-      console.log(error);
+      alert("Failed to delete articles");
     }
   }
 
@@ -192,9 +198,9 @@ export default function App() {
     <div className="App">
       <CurrentUserContext.Provider value={currentUser}>
         <ModalWindow
+          isPreloaderOpen={isPreloaderOpen}
           isModalOpen={isModalOpen}
           isLoginFormOpen={isLoginFormOpen}
-          isPreloaderOpen={isPreloaderOpen}
           isInfoOpen={isInfoOpen}
           closeAllPopups={closeAllPopups}
           redirectToLogin={redirectToLogin}
@@ -217,6 +223,7 @@ export default function App() {
                 searchHappened={searchHappened}
                 noSearchOutcome={noSearchOutcome}
                 isSearching={isSearching}
+                isPreloaderOpen={isPreloaderOpen}
                 isLoggedIn={isLoggedIn}
                 location={location}
                 handleSaveArticle={handleSaveArticle}

@@ -1,11 +1,11 @@
 import notFound from "../../images/not-found.svg";
 import Preloader from "../Preloader/Preloader";
 
-export default function Loader({ noSearchOutcome }) {
+export default function Loader({ noSearchOutcome, isPreloaderOpen }) {
   return (
     <div className="loader">
       {!noSearchOutcome ? (
-        <Preloader />
+        <Preloader isPreloaderOpen={isPreloaderOpen} />
       ) : (
         <img src={notFound} alt="sadly smile" />
       )}

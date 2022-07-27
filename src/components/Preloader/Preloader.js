@@ -1,3 +1,7 @@
 export default function Preloader(props) {
-  return <div className={"preloader"}></div>;
+  const { isPreloaderOpen } = props;
+
+  return (
+    <div className={`preloader ${isPreloaderOpen && "preloader_active"}`}></div>
+  );
 }
