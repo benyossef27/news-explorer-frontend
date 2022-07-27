@@ -76,10 +76,10 @@ export default function App() {
   }
 
   function handleLogOut(token) {
-    navigate("/");
     localStorage.removeItem("jwt", token);
     localStorage.removeItem("lastSearch");
     setLoggedIn(false);
+    navigate("/");
   }
 
   function handleLogIn() {
