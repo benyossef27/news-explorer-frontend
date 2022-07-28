@@ -1,13 +1,18 @@
-import NewsCard from "../NewsCard/NewsCard";
+import NewsCardList from "../NewsCardList/NewsCardList";
 
-export default function SavedNews() {
+export default function SavedNews(props) {
+  const { isLoggedIn, location, handleDeleteArticle, savedArticles, isOpen } =
+    props;
+
   return (
     <section className="saved-news">
-      <div className="saved-news__container">
-        <NewsCard />
-        <NewsCard />
-        <NewsCard />
-      </div>
+      <NewsCardList
+        isOpen={isOpen}
+        isLoggedIn={isLoggedIn}
+        location={location}
+        handleDeleteArticle={handleDeleteArticle}
+        savedArticles={savedArticles}
+      />
     </section>
   );
 }

@@ -1,17 +1,37 @@
 import About from "../About/About";
-import NewsCard from "../NewsCard/NewsCard";
 import NewsCardList from "../NewsCardList/NewsCardList";
 
-export default function Main({ isLoggedIn }) {
+export default function Main(props) {
+  const {
+    isPreloaderOpen,
+    searchHappened,
+    noSearchOutcome,
+    isSearching,
+    isLoggedIn,
+    location,
+    handleSaveArticle,
+    handleDeleteArticle,
+    searchedArticles,
+    savedArticles,
+    searchOutcome,
+    openForm,
+  } = props;
   return (
     <main className="main">
-      <NewsCardList isSearching={true} isFailed={false} />
-      <NewsCardList isSearching={true} isFailed={true} />
-      <NewsCardList isSearching={false} isFailed={false}>
-        <NewsCard isLoggedIn={isLoggedIn} />
-        <NewsCard isLoggedIn={isLoggedIn} />
-        <NewsCard isLoggedIn={isLoggedIn} />
-      </NewsCardList>
+      <NewsCardList
+        isPreloaderOpen={isPreloaderOpen}
+        searchHappened={searchHappened}
+        noSearchOutcome={noSearchOutcome}
+        isSearching={isSearching}
+        isLoggedIn={isLoggedIn}
+        location={location}
+        searchedArticles={searchedArticles}
+        handleSaveArticle={handleSaveArticle}
+        handleDeleteArticle={handleDeleteArticle}
+        savedArticles={savedArticles}
+        searchOutcome={searchOutcome}
+        openForm={openForm}
+      />
       <About />
     </main>
   );

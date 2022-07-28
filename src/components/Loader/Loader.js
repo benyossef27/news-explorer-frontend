@@ -1,13 +1,17 @@
 import notFound from "../../images/not-found.svg";
 import Preloader from "../Preloader/Preloader";
 
-export default function Loader({ isFailed }) {
+export default function Loader({ noSearchOutcome, isPreloaderOpen }) {
   return (
     <div className="loader">
-      {!isFailed ? <Preloader /> : <img src={notFound} alt="sadly smile" />}
-      {isFailed && <h2 className="loader__title">Nothing found</h2>}
+      {!noSearchOutcome ? (
+        <Preloader isPreloaderOpen={isPreloaderOpen} />
+      ) : (
+        <img src={notFound} alt="sadly smile" />
+      )}
+      {noSearchOutcome && <h2 className="loader__title">Nothing found</h2>}
       <span className="loader__text">
-        {!isFailed
+        {!noSearchOutcome
           ? "Searching for news..."
           : "Sorry, but nothing matched your search terms."}
       </span>

@@ -142,7 +142,7 @@ export default function PopupWithForm(props) {
       </form>
 
       <p className="popup__log-select" onClick={handleLogSwitch}>
-        {isLoggingIn ? " or Sign in" : "or Sign in"}
+        {isLoggingIn ? " or Sign up" : "or Sign in"}
       </p>
 
       <button className="popup__close" onClick={handleClose}>

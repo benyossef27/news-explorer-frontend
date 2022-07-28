@@ -1,12 +1,66 @@
-import { useState } from "react";
-import { useLocation } from "react-router";
+import { useState, useEffect } from "react";
 
-export default function NewsCard({ isLoggedIn }) {
-  const location = useLocation();
+export default function NewsCard(props) {
+  const {
+    isLoggedIn,
+    location,
+    article,
+    handleDeleteArticle,
+    handleSaveArticle,
+    savedArticles,
+    openForm,
+  } = props;
+
+  const isOnSavedNewsPage = location.pathname === "/saved-news";
   const [cardSelected, setCardSelected] = useState(false);
 
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const date = new Date(article.date);
+  const publishedAt =
+    monthNames[date.getMonth()] +
+    " " +
+    date.getDate() +
+    ", " +
+    date.getFullYear();
+
+  useEffect(() => {
+    if (!isOnSavedNewsPage) {
+      savedArticles.forEach((element) => {
+        if (element.title === article.title) {
+          setCardSelected(true);
+        }
+      });
+    }
+  });
+
   function handleMarkClick() {
-    isLoggedIn && setCardSelected((cardSelected) => !cardSelected);
+    if (isLoggedIn) {
+      if (cardSelected) {
+        savedArticles.forEach((element) => {
+          if (element.title === article.title) handleDeleteArticle(element);
+        });
+        setCardSelected(false);
+      } else {
+        handleSaveArticle(article);
+        setCardSelected(true);
+      }
+    } else {
+      openForm();
+    }
   }
 
   return (
@@ -16,52 +70,49 @@ export default function NewsCard({ isLoggedIn }) {
         event.stopPropagation();
       }}
     >
-      {location.pathname !== "/" && (
+      {isOnSavedNewsPage ? (
         <>
+          {" "}
+          {/*saved news page*/}
+          <button
+            className="card__button card__button_type_saved"
+            onClick={() => {
+              handleDeleteArticle(article);
+            }}
+          />
           <p className="card__message card__message_active">
             Remove from saved
           </p>
-          <p className="card__keyword">bears</p>
+          <p className="card__keyword">{article.keyword}</p>
+        </>
+      ) : (
+        <>
+          {" "}
+          {/*main page*/}
+          <button
+            className={`card__button ${
+              isLoggedIn && cardSelected && "card__button_active"
+            }`}
+            onClick={handleMarkClick}
+          />
+          <p
+            className={`card__message ${!isLoggedIn && "card__message_active"}`}
+          >
+            Sign in to save articles
+          </p>
         </>
       )}
-      <button
-        onClick={handleMarkClick}
-        className={`card__button
-        ${
-          location.pathname === "/"
-            ? cardSelected
-              ? "card__button_active"
-              : "card__buton_type_regulare"
-            : "card__button_type_saved"
-        }
-     `}
-      />
-      <p className="card__message">
-        {location.pathname === "/"
-          ? "Sign in to save articles"
-          : "Remove from saved"}
-      </p>
-
-      <a
-        href="https://en.wikipedia.org/wiki/Brown_bear"
-        target="_blank"
-        rel="noreferrer"
-      >
+      <a href={article.link} target="_blank" rel="noreferrer">
         <img
           className="card__image"
-          src="https://upload.wikimedia.org/wikipedia/commons/7/71/2010-kodiak-bear-1.jpg"
-          alt="bear"
+          src={article.image}
+          alt={article.title}
         ></img>
       </a>
-      <time className="card__date">17.07.2022</time>
-      <h2 className="card__title">Hello bear!</h2>
-      <p className="card__article">
-        The brown bear (Ursus arctos) is a large bear species found across
-        Eurasia and North America. In North America, the populations of brown
-        bears are called grizzly bears, while the subspecies that inhabits the
-        Kodiak Islands of Alaska is known as the Kodiak bear.
-      </p>
-      <h3 className="card__subtitle">somewhere</h3>
+      <time className="card__date">{publishedAt}</time>
+      <h2 className="card__title">{article.title}</h2>
+      <p className="card__article">{article.text}</p>
+      <h3 className="card__subtitle">{article.source}</h3>
     </li>
   );
 }

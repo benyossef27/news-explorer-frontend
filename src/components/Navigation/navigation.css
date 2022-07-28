@@ -74,6 +74,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-transform: capitalize;
 }
 
 .navigation__log-title_type_saved {
@@ -97,7 +98,7 @@
   }
 
   .navigation__home {
-    margin: 22px auto 20px auto;
+    /* margin: 22px auto 20px auto; */
     padding-right: 16px;
     padding-bottom: 28px;
     font-size: 16px;
@@ -105,7 +106,7 @@
   }
 
   .navigation__saved {
-    margin: 22px auto 20px 16px;
+    /* margin: 22px auto 20px 16px; */
     padding-right: 16px;
     padding-bottom: 28px;
     font-size: 16px;
